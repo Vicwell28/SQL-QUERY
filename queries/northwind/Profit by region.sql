@@ -1,6 +1,3 @@
-SELECT * 
-FROM order_details AS OD 
-INNER JOIN orders AS O ON O.order_id = OD.order_id
 
 //COMPROBACION
 SELECT SUM( OD.quantity * OD.unit_price * (1 - OD.discount)) AS totalVentas
@@ -58,7 +55,6 @@ ORDER BY ventasRegion.total
 
 
 //OBTERNER EL PRODUCTO MAS VENDIDO POR REGION
-
 SELECT R.region_description, TO_CHAR(ventasRegion.total, 'L9,999,999.99') AS total_ventas 
 FROM
 (
