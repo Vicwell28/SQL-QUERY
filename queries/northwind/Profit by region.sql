@@ -1,3 +1,11 @@
+---
+---
+---
+--- Consultas para PostgreSQL
+---
+---
+---
+---
 
 //COMPROBACION
 SELECT SUM( OD.quantity * OD.unit_price * (1 - OD.discount)) AS totalVentas

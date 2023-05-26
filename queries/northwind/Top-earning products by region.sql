@@ -1,4 +1,4 @@
--- OBTERNER EL PRODUCTO MAS VENDIDO POR REGION
+--- OBTERNER EL PRODUCTO MAS VENDIDO POR REGION
 SELECT
   OD.*,
   (OD.quantity * OD.unit_price * (1 - OD.discount)) AS total,
@@ -42,7 +42,8 @@ FROM
   ) AS R ON R.employee_id = O.employee_id
 GROUP BY
   R.region_ids,
-  OD.product_id -- PRODUCTOS VENDIDOS POR CADA EMPLEADO
+  OD.product_id 
+--- PRODUCTOS VENDIDOS POR CADA EMPLEADO
 SELECT
   O.employee_id,
   OD.product_id,
@@ -53,7 +54,9 @@ FROM
   INNER JOIN orders AS O ON O.order_id = OD.order_id
 GROUP BY
   O.employee_id,
-  OD.product_id --UTILZIANDO LA CLAUSULA PARTITION PARA AGRUPAR POR 
+  OD.product_id 
+
+---UTILZIANDO LA CLAUSULA PARTITION PARA AGRUPAR POR 
 SELECT
   employee_id,
   product_id,
@@ -77,7 +80,7 @@ FROM
 WHERE
   total_ventas_cantidad = max_total_ventas_cantidad;
 
---UTILZIANDO LA CLAUSULA PARTITION PARA AGRUPAR POR 
+--- UTILZIANDO LA CLAUSULA PARTITION PARA AGRUPAR POR 
 SELECT
   employee_id,
   product_id,
@@ -103,7 +106,7 @@ FROM
 WHERE
   total_ventas_dinero = max_total_ventas_dinero;
 
--- PRODUCTO MAS VENDIDO POR CADA EMPLEADO
+--- PRODUCTO MAS VENDIDO POR CADA EMPLEADO
 SELECT
   OD.product_id,
   SUM(OD.quantity * OD.unit_price * (1 - OD.discount)) AS total_cantidad_dinero,

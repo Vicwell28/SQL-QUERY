@@ -97,7 +97,10 @@ FROM
             GetBestSellingProductByDollarAmountInTheRegion(4)
     ) AS T
     INNER JOIN region AS R ON R.region_id = T.region_ids
-    INNER JOIN products AS P ON P.product_id = T.product_id CREATE
+    INNER JOIN products AS P ON P.product_id = T.product_id 
+    
+    ----
+    CREATE
     OR REPLACE FUNCTION GetBestSellingProductByQuantityInTheRegion(regionId INT) RETURNS TABLE (
         product_id SMALLINT,
         total_dinero DOUBLE PRECISION,

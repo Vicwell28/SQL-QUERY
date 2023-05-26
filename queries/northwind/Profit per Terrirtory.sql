@@ -1,3 +1,15 @@
+---
+---
+---
+--- Consultas para PostgreSQL
+---
+---
+---
+---
+
+
+
+
 -- POR TERRITORIOS
 SELECT
     empleadosporregion.region_name AS name,
