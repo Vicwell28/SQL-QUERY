@@ -1,28 +1,95 @@
 SELECT
-    OD.product_id,
-    SUM(OD.quantity * OD.unit_price * (1 - OD.discount)) AS total_dinero,
-    SUM(OD.quantity) AS total_cantidad,
-    ARRAY_AGG(R.employee_id) AS empleados,
-	MAX(R.region_ids) AS region_ids
+    Q2.region_ids,
+    MAX(Q2.maxganncia) as maxganancia,
+    MAX(Q2.minganancia) as minganancia,
+    ARRAY_AGG(maxProduct.product_id) as productosmax,
+    ARRAY_AGG(mingProduct.product_id) as productosmin
 FROM
-    order_details AS OD
-    INNER JOIN orders AS O ON O.order_id = OD.order_id
+    (
+        SELECT
+            Q1.region_ids,
+            MAX(Q1.totaldescuento) AS maxGanncia,
+            MIN(Q1.totaldescuento) AS minGanancia
+        FROM
+            (
+                SELECT
+                    empleadosporregion.region_ids,
+                    OD.product_id,
+                    SUM(OD.quantity),
+                    SUM(OD.quantity * OD.unit_price * (1 - OD.discount)) AS totaldescuento
+                FROM
+                    order_details AS OD
+                    INNER JOIN orders AS O ON O.order_id = OD.order_id
+                    INNER JOIN (
+                        SELECT
+                            ET.employee_id,
+                            MAX(R.region_id) AS region_ids,
+                            MAX(R.region_description) AS region_name
+                        FROM
+                            territories AS T
+                            INNER JOIN region AS R ON R.region_id = T.region_id
+                            INNER JOIN employee_territories AS ET ON ET.territory_id = T.territory_id
+                        GROUP BY
+                            ET.employee_id
+                    ) AS empleadosporregion ON empleadosporregion.employee_id = O.employee_id
+                GROUP BY
+                    empleadosporregion.region_ids,
+                    OD.product_id
+            ) AS Q1
+        GROUP BY
+            Q1.region_ids
+    ) AS Q2
     INNER JOIN (
         SELECT
-            ET.employee_id,
-            MAX(R.region_id) AS region_ids,
-            MAX(R.region_description) AS region_name
+            empleadosporregion.region_ids,
+            OD.product_id,
+            SUM(OD.quantity),
+            SUM(OD.quantity * OD.unit_price * (1 - OD.discount)) AS totaldescuento
         FROM
-            territories AS T
-            INNER JOIN region AS R ON R.region_id = T.region_id
-            INNER JOIN employee_territories AS ET ON ET.territory_id = T.territory_id
+            order_details AS OD
+            INNER JOIN orders AS O ON O.order_id = OD.order_id
+            INNER JOIN (
+                SELECT
+                    ET.employee_id,
+                    MAX(R.region_id) AS region_ids,
+                    MAX(R.region_description) AS region_name
+                FROM
+                    territories AS T
+                    INNER JOIN region AS R ON R.region_id = T.region_id
+                    INNER JOIN employee_territories AS ET ON ET.territory_id = T.territory_id
+                GROUP BY
+                    ET.employee_id
+            ) AS empleadosporregion ON empleadosporregion.employee_id = O.employee_id
         GROUP BY
-            ET.employee_id
-    ) AS R ON R.employee_id = O.employee_id
-WHERE
-    R.region_ids = 1
+            empleadosporregion.region_ids,
+            OD.product_id
+    ) AS maxProduct ON maxProduct.region_ids = Q2.region_ids
+    AND maxProduct.totaldescuento = Q2.maxGanncia
+    INNER JOIN (
+        SELECT
+            empleadosporregion.region_ids,
+            OD.product_id,
+            SUM(OD.quantity),
+            SUM(OD.quantity * OD.unit_price * (1 - OD.discount)) AS totaldescuento
+        FROM
+            order_details AS OD
+            INNER JOIN orders AS O ON O.order_id = OD.order_id
+            INNER JOIN (
+                SELECT
+                    ET.employee_id,
+                    MAX(R.region_id) AS region_ids,
+                    MAX(R.region_description) AS region_name
+                FROM
+                    territories AS T
+                    INNER JOIN region AS R ON R.region_id = T.region_id
+                    INNER JOIN employee_territories AS ET ON ET.territory_id = T.territory_id
+                GROUP BY
+                    ET.employee_id
+            ) AS empleadosporregion ON empleadosporregion.employee_id = O.employee_id
+        GROUP BY
+            empleadosporregion.region_ids,
+            OD.product_id
+    ) AS mingProduct ON mingProduct.region_ids = Q2.region_ids
+    AND mingProduct.totaldescuento = Q2.minGanancia
 GROUP BY
-    OD.product_id
-ORDER BY
-    total_dinero DESC
-LIMIT 1
+    Q2.region_ids
