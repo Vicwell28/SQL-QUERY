@@ -18,7 +18,9 @@ FROM
       INNER JOIN employee_territories AS ET ON ET.territory_id = T.territory_id
     GROUP BY
       ET.employee_id
-  ) AS R ON R.employee_id = O.employee_id --PRODUCTOS VENDIDOS POR REGION + ARREGLO DE LOS EMPLEADOS
+  ) AS R ON R.employee_id = O.employee_id 
+
+--PRODUCTOS VENDIDOS POR REGION + ARREGLO DE LOS EMPLEADOS
 SELECT
   R.region_ids,
   OD.product_id,
