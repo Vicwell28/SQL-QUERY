@@ -1,11 +1,1 @@
-[
-  { "EmployeeID": 1, "ReportsTo": 2.0, "Salary": 2954.55, "RegionID": 1 },
-  { "EmployeeID": 2, "ReportsTo": null, "Salary": 2254.49, "RegionID": 1 },
-  { "EmployeeID": 3, "ReportsTo": 2.0, "Salary": 3119.15, "RegionID": 4 },
-  { "EmployeeID": 4, "ReportsTo": 2.0, "Salary": 1861.08, "RegionID": 1 },
-  { "EmployeeID": 5, "ReportsTo": 2.0, "Salary": 1744.21, "RegionID": 1 },
-  { "EmployeeID": 6, "ReportsTo": 5.0, "Salary": 2004.07, "RegionID": 2 },
-  { "EmployeeID": 7, "ReportsTo": 5.0, "Salary": 1991.55, "RegionID": 2 },
-  { "EmployeeID": 8, "ReportsTo": 2.0, "Salary": 2100.5, "RegionID": 3 },
-  { "EmployeeID": 9, "ReportsTo": 5.0, "Salary": 2333.33, "RegionID": 3 }
-]
+[{"EmployeeID":1,"ReportsTo":2.0,"Salary":2954.55,"RegionID":1},{"EmployeeID":2,"ReportsTo":null,"Salary":2254.49,"RegionID":1},{"EmployeeID":3,"ReportsTo":2.0,"Salary":3119.15,"RegionID":4},{"EmployeeID":4,"ReportsTo":2.0,"Salary":1861.08,"RegionID":1},{"EmployeeID":5,"ReportsTo":2.0,"Salary":1744.21,"RegionID":1},{"EmployeeID":6,"ReportsTo":5.0,"Salary":2004.07,"RegionID":2},{"EmployeeID":7,"ReportsTo":5.0,"Salary":1991.55,"RegionID":2},{"EmployeeID":8,"ReportsTo":2.0,"Salary":2100.5,"RegionID":3},{"EmployeeID":9,"ReportsTo":5.0,"Salary":2333.33,"RegionID":3}]
