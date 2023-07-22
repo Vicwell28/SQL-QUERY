@@ -104,9 +104,9 @@ df_total_region = df_total_region.groupby('RegionID').sum('Total').reset_index()
 df_total_region = pd.merge(
     df_total_region,
     df_region,
-        left_on='RegionID',
-        right_on='RegionID',
-        how='inner'
+    left_on='RegionID',
+    right_on='RegionID',
+    how='inner'
 )
 
 df_total_region = df_total_region[['RegionID', 'RegionDescription', 'Total']]
@@ -115,18 +115,7 @@ df_employees_regions.to_json("employees_regions.json", orient="records")
 
 df_total_region.to_json("total_region.json", orient='records')
 
-
-
-
-
-
-
-
-
-
-
 # print(df_products)
-
 
 df_products['Total'] = df_products['Quantity'] * df_products['UnitPrice']
 
@@ -139,6 +128,5 @@ df_products = pd.merge(
     right_on='RegionID',
     how='inner'
 )
-
 
 print(df_products)

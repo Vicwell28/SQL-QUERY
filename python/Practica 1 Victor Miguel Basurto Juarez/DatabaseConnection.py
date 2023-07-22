@@ -15,7 +15,6 @@ class DatabaseConnection:
         self.engine = None
         self.database = "northwind"
 
-
 #    - El método `connect` establece la conexión con la base de datos utilizando los datos proporcionados.
     def connect(self):
         try:

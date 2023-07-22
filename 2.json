@@ -1,0 +1,22 @@
+[
+  {
+    "RegionDescription": "Eastern",
+    "ProductName": "Cte de Blaye",
+    "Total": 88536.0
+  },
+  {
+    "RegionDescription": "Southern",
+    "ProductName": "Cte de Blaye",
+    "Total": 25559.5
+  },
+  {
+    "RegionDescription": "Westerns",
+    "ProductName": "Thringer Rostbratwurst",
+    "Total": 24262.84
+  },
+  {
+    "RegionDescription": "Northern",
+    "ProductName": "Raclette Courdavault",
+    "Total": 20856.0
+  }
+]
