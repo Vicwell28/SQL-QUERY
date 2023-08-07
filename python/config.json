@@ -1,0 +1,21 @@
+[
+  {
+    "url": "https://www.walmart.com.mx/search?q=iPhone+11",
+    "search": {
+      "search_class": "", 
+      "to_search": "iPhone11"
+    },
+    "captchaId": "",
+    "selects": {
+      "first_select": "id",
+      "second_select": "id"
+    },
+    "pagination_class": "a[data-automation-id='page-number']",
+    "header_list_items_class": "div[data-testid='list-view']",
+    "body_list_item_class": {
+      "product-price": "div[class='mr1 mr2-xl b black lh-copy f5 f4-l']",
+      "marca": "div[class='b f6 black mr1 mt2 mb1 lh-copy']",
+      "des": "span[data-automation-id='product-title']"
+    }
+  }
+]
